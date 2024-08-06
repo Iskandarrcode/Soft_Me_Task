@@ -20,7 +20,6 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordText = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  String? errorMessage;
 
   void submit(BuildContext context) {
     if (_formKey.currentState!.validate()) {
@@ -34,31 +33,6 @@ class _SignupScreenState extends State<SignupScreen> {
           password: passwordController.text,
         ),
       );
-      // try {
-      //   if (!mounted) return;
-      // } catch (e) {
-      //   String message = e.toString();
-
-      //   if (!mounted) return;
-
-      //   showDialog(
-      //     context: context,
-      //     builder: (ctx) {
-      //       return AlertDialog(
-      //         title: const Text("Xatolik"),
-      //         content: Text(message),
-      //         actions: [
-      //           TextButton(
-      //             onPressed: () {
-      //               Navigator.of(ctx).pop();
-      //             },
-      //             child: const Text("OK"),
-      //           ),
-      //         ],
-      //       );
-      //     },
-      //   );
-      // }
     }
   }
 
@@ -86,11 +60,14 @@ class _SignupScreenState extends State<SignupScreen> {
           backgroundColor: const Color.fromARGB(1, 33, 149, 243),
           leading: IconButton(
             onPressed: () {
-              Navigator.pushReplacement(context, MaterialPageRoute(
-                builder: (context) {
-                  return const LoginScreen();
-                },
-              ));
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const LoginScreen();
+                  },
+                ),
+              );
             },
             icon: const Icon(
               Icons.arrow_back,
@@ -107,30 +84,25 @@ class _SignupScreenState extends State<SignupScreen> {
                   builder: (context) => const LoginScreen(),
                 ),
               );
-            } else if (state is ErrorAuthState) {
-              setState(() {
-                errorMessage = state.message;
-              });
-              // print(errorMessage);
-              if (errorMessage != null) {
-                showDialog(
-                  context: context,
-                  builder: (ctx) {
-                    return AlertDialog(
-                      title: const Text("Xatolik"),
-                      content: Text(errorMessage ?? "Nimadir xato ketti"),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(ctx).pop();
-                          },
-                          child: const Text("OK"),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              }
+            }
+            if (state is ErrorAuthState) {
+              showDialog(
+                context: context,
+                builder: (ctx) {
+                  return AlertDialog(
+                    title: const Text("Xatolik"),
+                    content: Text(state.message),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(ctx).pop();
+                        },
+                        child: const Text("OK"),
+                      ),
+                    ],
+                  );
+                },
+              );
             }
           },
           child: BlocBuilder<AuthBloc, AuthState>(

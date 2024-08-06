@@ -19,42 +19,46 @@ class _LoginScreenState extends State<LoginScreen> {
   String? password, userName;
 
   void submit() async {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-      BlocProvider.of<AuthBloc>(context).add(
-        LoginEvent(
-          username: userNameController.text,
-          password: passwordText.text,
-        ),
-      );
-    }
-
-    try {
-      if (!mounted) return;
-    } catch (e) {
-      String message = e.toString();
-
-      if (!mounted) return;
-
-      showDialog(
-        context: context,
-        builder: (ctx) {
-          return AlertDialog(
-            title: const Text("Xatolik"),
-            content: Text(message),
-            actions:[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(ctx).pop();
-                },
-                child: const Text("OK"),
-              ),
-            ],
-          );
-        },
-      );
-    }
+  if (_formKey.currentState!.validate()) {
+    _formKey.currentState!.save();
+    BlocProvider.of<AuthBloc>(context).add(
+      LoginEvent(
+        username: userNameController.text,
+        password: passwordText.text,
+      ),
+    );
   }
+
+  try {
+    if (!mounted) return;
+
+    // Sizning qo'shimcha asinxron kodlaringiz bo'lsa shu yerga qo'yishingiz mumkin.
+
+  } catch (e) {
+    String message = e.toString();
+
+    if (!mounted) return;
+
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        return AlertDialog(
+          title: const Text("Xatolik"),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(ctx).pop();
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
 
   @override
   void dispose() {
@@ -189,7 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             title: const Text("Xatolik"),
                             content:
                                 const Text("Bunday Foydalanuvchi Mavjud emas"),
-                            actions: <Widget>[
+                            actions: [
                               TextButton(
                                 onPressed: () {
                                   Navigator.of(ctx).pop();

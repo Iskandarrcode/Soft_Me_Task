@@ -23,8 +23,9 @@ class AuthDioServices {
       );
       print(response.statusMessage);
       if (response.statusMessage == "Found") {
-        throw "Ro'yxatdan o'tilgan";
+        throw "Foydalanuvchi Ro'yxatdan O'tgan";
       }
+
       return response.data["status"];
     } on DioException catch (e) {
       print('Register DioException: ${e.message}');

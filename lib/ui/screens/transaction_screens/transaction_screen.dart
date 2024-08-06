@@ -78,10 +78,18 @@ class _TransactionScreenState extends State<TransactionScreen> {
                             builder: (context) {
                               return AddTransactionScreen(
                                 isAdd: false,
+                                transactionId: state.transactions[index].id!,
+                                transactionAmount:
+                                    state.transactions[index].amount,
                                 transactionAmout:
                                     state.transactions[index].amount,
-                                transactionId: state.transactions[index].id!,
                               );
+                              // return AddTransactionScreen(
+                              //   isAdd: false,
+                              //   transactionAmout:
+                              //       state.transactions[index].amount,
+                              //   transactionId: state.transactions[index].id!,
+                              // );
                             },
                           ));
                         },
@@ -120,6 +128,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
               return const AddTransactionScreen(
                 isAdd: true,
                 transactionAmout: 0,
+                transactionAmount: 0,
                 transactionId: 0,
               );
             },

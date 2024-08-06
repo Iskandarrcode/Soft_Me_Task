@@ -9,12 +9,14 @@ import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 class AddTransactionScreen extends StatefulWidget {
   final bool isAdd;
   final int transactionId;
-  final double transactionAmout;
+  final double transactionAmount;
+
   const AddTransactionScreen({
     super.key,
     required this.isAdd,
     required this.transactionId,
-    required this.transactionAmout,
+    required this.transactionAmount,
+    required double transactionAmout,
   });
 
   @override
@@ -24,8 +26,8 @@ class AddTransactionScreen extends StatefulWidget {
 class _AddTransactionScreenState extends State<AddTransactionScreen> {
   final nameController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  late int type;
-  late num categoryId;
+  late int type = 0;
+  late num categoryId = 0;
 
   @override
   void dispose() {
@@ -77,19 +79,19 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
           }
 
           if (state is LoadedCategoryState) {
-            if (widget.isAdd == false) {
-              nameController.text = widget.transactionAmout.toString();
+            if (!widget.isAdd) {
+              nameController.text = widget.transactionAmount.toString();
             }
             return Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 20),
                   Form(
                     key: formKey,
                     child: TextFormField(
                       controller: nameController,
-                      keyboardType: TextInputType.name,
+                      keyboardType: TextInputType.number,
                       style: TextStyle(
                         color: Colors.grey.shade300,
                       ),
@@ -97,7 +99,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(13),
                         ),
-                        labelText: widget.isAdd ? "Amout" : "NewAmout",
+                        labelText: widget.isAdd ? "Amount" : "New Amount",
                         labelStyle: TextStyle(color: Colors.grey.shade300),
                         errorBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
@@ -108,7 +110,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Input Amout";
+                          return "Input Amount";
                         }
                         return null;
                       },
@@ -120,19 +122,23 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                     children: [
                       TextButton(
                         onPressed: () {
-                          type = 0;
+                          setState(() {
+                            type = 0;
+                          });
                         },
                         child: const Text(
-                          "Kirim",
+                          "Income",
                           style: TextStyle(color: Colors.blue),
                         ),
                       ),
                       TextButton(
                         onPressed: () {
-                          type = 1;
+                          setState(() {
+                            type = 1;
+                          });
                         },
                         child: const Text(
-                          "Chiqim",
+                          "Expense",
                           style: TextStyle(color: Colors.blue),
                         ),
                       ),
