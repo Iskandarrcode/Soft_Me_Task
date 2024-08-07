@@ -85,9 +85,10 @@ class AuthDioServices {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove('token');
 
-    Navigator.pushReplacement(
+    Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => const LoginScreen()),
+      (route) => route is LoginScreen,
     );
   }
 }

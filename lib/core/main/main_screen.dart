@@ -18,6 +18,8 @@ class MyApp extends StatelessWidget {
       home: StreamBuilder(
         stream: getToken(),
         builder: (context, snapshot) {
+          print("snapshot DAta");
+          print(snapshot.data);
           if (snapshot.hasData) {
             return const NavigationBars();
           } else {
