@@ -2,7 +2,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
-import 'package:soft_me/core/network/dio_clients.dart';
+import 'package:soft_me/data/core/network/dio_clients.dart';
 import 'package:soft_me/data/models/transaction_model.dart';
 
 class TransactionServices {

@@ -3,7 +3,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:soft_me/core/network/dio_clients.dart';
+import 'package:soft_me/data/core/network/dio_clients.dart';
 import 'package:soft_me/ui/screens/login_register_screen/login_screen.dart';
 
 class AuthDioServices {

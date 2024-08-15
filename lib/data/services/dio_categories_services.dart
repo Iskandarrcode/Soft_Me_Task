@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:dio/dio.dart';
-import 'package:soft_me/core/network/dio_clients.dart';
+import 'package:soft_me/data/core/network/dio_clients.dart';
 import 'package:soft_me/data/models/categories_model.dart';
 
 class DioCategoriesServices {

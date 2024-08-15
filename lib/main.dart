@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:soft_me/core/main/main_screen.dart';
+import 'package:soft_me/data/core/main/main_screen.dart';
 import 'package:soft_me/data/repository/category_repository.dart';
 import 'package:soft_me/data/repository/transaction_repository.dart';
 import 'package:soft_me/data/repository/user_repository.dart';
